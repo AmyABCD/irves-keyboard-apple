@@ -1,0 +1,47 @@
+name: Build Irves Keyboard Apple (iOS & macOS)
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  workflow_dispatch:
+
+jobs:
+  build-ios:
+    runs-on: macos-14
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Xcode
+        run: sudo xcode-select -s /Applications/Xcode_15.4.app/Contents/Developer || sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+
+      - name: Build & Archive Keyboard App
+        run: |
+          xcodebuild archive \
+            -project IrvesKeyboard.xcodeproj \
+            -scheme IrvesKeyboard \
+            -configuration Release \
+            -destination 'generic/platform=iOS' \
+            -archivePath build/IrvesKeyboard.xcarchive \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGN_IDENTITY=""
+
+      - name: Package .IPA
+        run: |
+          mkdir -p Payload
+          cp -r build/IrvesKeyboard.xcarchive/Products/Applications/IrvesKeyboard.app Payload/
+          zip -r IrvesKeyboard.ipa Payload
+          rm -rf Payload
+
+      - name: Upload iOS IPA Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: IrvesKeyboard-iOS-IPA
+          path: IrvesKeyboard.ipa
+
+      - name: Upload macOS Keyboard Layout
+        uses: actions/upload-artifact@v4
+        with:
+          name: Irves_Mongolian-macOS-keylayout
+          path: Irves_Mongolian.keylayout

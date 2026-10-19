@@ -27,7 +27,7 @@ struct ContentView: View {
                         Text("ИРВЭС ГАР")
                             .font(.system(size: 20, weight: .black))
                             .foregroundColor(.primary)
-                        Text("Монгол · English · 54 Стикер")
+                        Text("Монгол · English · 54 Гүемхэн стикер")
                             .font(.system(size: 12, weight: .medium))
                             .foregroundColor(.secondary)
                     }
@@ -52,7 +52,7 @@ struct ContentView: View {
                 Picker("Хэсэг", selection: $selectedTab) {
                     Text("Заавар").tag(0)
                     Text("Турших").tag(1)
-                    Text("Стикер (54)").tag(2)
+                    Text("Гүемхэн (54)").tag(2)
                     Text("Mac хувилбар").tag(3)
                 }
                 .pickerStyle(SegmentedPickerStyle())
@@ -232,12 +232,12 @@ struct ContentView: View {
     private var stickersGridView: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 12) {
-                Text("Ирвэс стикерийн цомог (Нийт \(stickers.count))")
+                Text("Гүем, Гүемхэн стикерийн цомог (Нийт \(stickers.count))")
                     .font(.system(size: 15, weight: .bold))
                     .padding(.horizontal, 16)
                     .padding(.top, 8)
 
-                Text("Стикер дээр товшиж түр санах ойд хуулаад Messenger, Instagram, Telegram чатандаа нааж (Paste) болно.")
+                Text("Гүемхэн дээрээ товшиж түр санах ойд хуулаад Messenger, Instagram, Telegram чатандаа нааж (Paste) болно.")
                     .font(.system(size: 13))
                     .foregroundColor(.secondary)
                     .padding(.horizontal, 16)

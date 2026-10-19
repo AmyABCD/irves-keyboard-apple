@@ -132,7 +132,7 @@ class KeyboardViewController: UIInputViewController {
         toolbarView.addArrangedSubview(spacer)
 
         // Stickers Tab Button
-        let btnStickers = createToolbarButton(title: "🐆 Стикер") { [weak self] in
+        let btnStickers = createToolbarButton(title: "🐆 Гүемхэн") { [weak self] in
             self?.toggleMode(.stickers)
         }
         toolbarView.addArrangedSubview(btnStickers)
@@ -588,9 +588,9 @@ extension KeyboardViewController: UICollectionViewDataSource, UICollectionViewDe
         if let imagePath = Bundle.main.path(forResource: id, ofType: "png", inDirectory: "Stickers") ?? Bundle.main.path(forResource: id, ofType: "png"),
            let image = UIImage(contentsOfFile: imagePath) {
             UIPasteboard.general.image = image
-            showToast(message: "Стикер хуулагдлаа! 📋 Чатдаа буулгана (Paste) уу")
+            showToast(message: "Гүемхэн хуулагдлаа! 📋 Чатдаа Paste хийнэ үү")
         } else {
-            showToast(message: "Стикер хуулагдлаа! 📋")
+            showToast(message: "Гүемхэн хуулагдлаа! 📋")
         }
     }
 }
